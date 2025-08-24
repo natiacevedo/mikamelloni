@@ -1,0 +1,349 @@
+:root{
+    --primario: #e0b066;
+    --secundario: #c6d4b4;
+    --terciario: #cc8755;
+    --anaranjado: #eb580c;
+    --verde: #78994b;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Brittany";
+  src: url("./fonts/BrittanySignature.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+.brittany{
+    font-family: "Brittany";
+    line-height: 0.4;
+    color: var(--anaranjado);
+}
+
+/* WhatsApp */
+
+.whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #1ebe5d;
+    }
+
+    .whatsapp-float i {
+      margin: 0;
+    }
+
+/* HEADER */
+
+.logo img{
+    width: 180px;
+}
+
+header, footer{
+  background-color: var(--secundario);
+}
+
+header .links {
+  color: var(--anaranjado) !important;
+  transition: all ease-in-out 0.3s;
+}
+
+header .links.active{
+  color: var(--terciario) !important;
+}
+
+header .links:hover {
+  color: var(--terciario) !important;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(120, 153, 75, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* MAIN */
+/* Banner */
+
+#banner{
+    background-image: url(./img/banner.jpg);
+    background-position: top;
+    background-size: cover;
+    height: 100vh;
+}
+
+.saber-mas-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.saber-mas-btn:hover {
+  color: var(--verde);
+}
+
+.saber-mas-btn i {
+  margin-left: 8px;
+}
+
+/* INTRODUCCIÓN */
+
+#intro{
+    padding: 40px;
+}
+
+#intro .caja{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.caja .card{
+    background-color: var(--verde);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.307);
+}
+
+.caja .card2{
+    background-color: var(--anaranjado);
+    color: white;
+    border-radius: 8px;
+}
+
+.caja a{
+    color: white;
+    text-decoration: underline;
+}
+
+span{
+    font-weight: bold;
+}
+
+.hover:hover{
+    color: var(--secundario);
+}
+
+@media (max-width: 768px) {
+  #intro .caja {
+    width: 100%;
+    padding: 20px;
+  }
+
+  #intro .d-flex {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  #intro .card,
+  #intro .card2 {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* SERVICIOS */
+
+#servicios h2{
+    color: var(--anaranjado);
+    font-family: "Brittany";
+}
+
+#servicios .card{
+    background-color: #c6d4b413;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.307);
+}
+
+.card-title {
+  font-weight: bold;
+  color: var(--verde);
+}
+
+.btn-success {
+  background-color: var(--anaranjado);
+  border: none;
+  font-size: small;
+}
+
+.btn-success:hover {
+  background-color: var(--terciario);
+}
+
+/* SOBRE MI */
+
+.sobremi{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  margin: 0 auto;
+}
+
+.sobremi h2{
+  color: white;
+  padding: 20px 0 20px 0;
+}
+
+.sobremi-text {
+  background-color: var(--verde);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.307);
+}
+
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Inicialmente el texto está colapsado */
+#extra-text {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease; /* animación */
+}
+
+/* Cuando está expandido */
+#extra-text.expanded {
+  max-height: 1000px;
+}
+
+/* Botón */
+.sobremi-text button {
+  margin-top: 1rem;
+  background-color: var(--verde);
+  color: white;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sobremi-text button:hover {
+  color: var(--secundario);
+}
+
+/* TESTIMONIOS */
+
+#testimonios {
+  background-color: var(--secundario);
+  height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+#testimonios h2 {
+  color: var(--anaranjado);
+  font-family: "Brittany";
+}
+
+#testimonios .carousel-indicators [data-bs-target] {
+  background-color: black;
+}
+
+#testimonios .carousel-control-prev-icon,
+#testimonios .carousel-control-next-icon {
+  filter: invert(1);
+}
+
+/* CONTACTO */
+
+#contacto p a{
+    color: var(--anaranjado);
+}
+
+#contacto form input, #contacto form textarea{
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    outline: none
+}
+
+#contacto form input:focus, #contacto form textarea:focus{
+    box-shadow: none;
+}
+
+#contacto button{
+    background-color: var(--anaranjado);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+#contacto button:hover{
+    background-color: var(--terciario);
+    color: white;
+}
+
+/* FOOTER */
+
+footer{
+    padding: 20px;
+}
+
+.copyright{
+    font-size: smaller;
+}
+
+
+/* ANIMACIONES */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 2s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
