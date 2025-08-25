@@ -125,6 +125,10 @@ header .links:hover {
     #banner h2 {
         top: 20px;
     }
+
+    #banner{
+      height: 90vh;
+    }
 }
 
 .saber-mas-btn {
