@@ -158,66 +158,61 @@ header .links:hover {
 #intro .caja {
     width: 80%;
     max-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     margin: auto;
 }
 
 #intro .d-flex {
-    align-items: stretch !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.caja {
-  a {
-    color: white;
-    text-decoration: underline;
-    margin-top: auto;
-  }
-
-  .card, .card2 {
-    flex: 1 1 0;
+/* Cards */
+.caja .card,
+.caja .card2 {
+    flex: 1 1 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 280px;
     border-radius: 8px;
     color: white;
-  }
-
-  .card {
-    background-color: var(--verde);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.307);
-  }
-
-  .card2 {
-    background-color: var(--anaranjado);
-  }
-
-  .hover:hover {
-      color: var(--secundario);
-  }
 }
 
+.caja .card {
+    background-color: var(--verde);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.307);
+}
 
+.caja .card2 {
+    background-color: var(--anaranjado);
+}
+
+.caja a {
+    color: white;
+    text-decoration: underline;
+    margin-top: auto;
+}
+
+.caja .hover:hover {
+    color: var(--secundario);
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  #intro .caja {
-    width: 100%;
-    padding: 20px;
+  #intro{
+    padding: 40px 8px !important;
   }
 
-  #intro .d-flex {
-    flex-direction: column;
-    gap: 20px;
-    align-items: stretch;
-  }
+    #intro .d-flex {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-  #intro .card,
-  #intro .card2 {
-    width: 100%;
-    text-align: center;
-  }
+    #intro .card,
+    #intro .card2 {
+        width: 100%;
+        height: auto !important;
+    }
 }
 
 /* SERVICIOS */

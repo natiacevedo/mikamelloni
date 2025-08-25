@@ -46,3 +46,24 @@ carouselItems.forEach(item => {
 carouselItems.forEach(item => {
   item.style.height = maxHeight + 'px';
 });
+
+
+/* Cards */
+
+function setEqualHeight() {
+    const cards = document.querySelectorAll('#intro .card, #intro .card2');
+    // Reset heights
+    cards.forEach(c => c.style.height = 'auto');
+
+    if (window.innerWidth > 768) {
+        let maxHeight = 0;
+        cards.forEach(c => {
+            if (c.offsetHeight > maxHeight) maxHeight = c.offsetHeight;
+        });
+        cards.forEach(c => c.style.height = maxHeight + 'px');
+    }
+}
+
+// Ejecutar al cargar y al cambiar tamaño de ventana
+window.addEventListener('load', setEqualHeight);
+window.addEventListener('resize', setEqualHeight);
