@@ -33,3 +33,16 @@ window.addEventListener("load", () => {
     el.classList.add("show");
   });
 });
+
+/* Carrusel Testimonios */
+const carouselItems = document.querySelectorAll('#testimonios .carousel-item');
+let maxHeight = 0;
+
+carouselItems.forEach(item => {
+  const h = item.scrollHeight;
+  if (h > maxHeight) maxHeight = h;
+});
+
+carouselItems.forEach(item => {
+  item.style.height = maxHeight + 'px';
+});
