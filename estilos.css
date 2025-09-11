@@ -2,7 +2,7 @@
     --primario: #e0b066;
     --secundario: #c6d4b4;
     --terciario: #cc8755;
-    --anaranjado: #eb580c;
+    --anaranjado: #c9633b;
     --verde: #78994b;
 
     color-scheme: light;
@@ -39,6 +39,21 @@ html{
 
 span {
     font-weight: bold;
+}
+
+.cta{
+  background-color: rgb(241, 241, 241);
+  color: black !important;
+  font-size: small;
+  border-radius: 50px;
+  transition: all ease-in-out 0.3s;
+  box-shadow: #00000026 2px 2px 8px;
+}
+
+.cta:hover{
+  background-color: rgb(241, 241, 241);
+  color: black;
+  opacity: 0.8;
 }
 
 /* WhatsApp */
@@ -105,10 +120,17 @@ header .links:hover {
 /* Banner */
 
 #banner{
-    background-image: url(./img/banner.jpg);
+    background-image: url(./img/banner2.jpg);
     background-position: top;
     background-size: cover;
     height: 100vh;
+}
+
+#banner::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* shorthand para top, right, bottom, left: 0 */
+    background-color: rgba(198, 212, 180, 0.215); /* cambia el color y opacidad */
 }
 
 #banner h2 {
@@ -377,7 +399,7 @@ footer{
     padding: 20px;
 }
 
-.copyright{
+.smaller{
     font-size: smaller;
 }
 
