@@ -1,69 +1,108 @@
-/* Leer mas */
+document.addEventListener('DOMContentLoaded', function () {
 
-const toggleBtn = document.getElementById("toggle-btn");
-const extraText = document.getElementById("extra-text");
+  /* ---------------------------
+     SOBRE MI
+     --------------------------- */
+  const sobreBtn = document.getElementById('toggle-btn');
+  const sobreExtra = document.getElementById('extra-text');
 
-toggleBtn.addEventListener("click", () => {
-  extraText.classList.toggle("expanded");
-  
-  if (extraText.classList.contains("expanded")) {
-    toggleBtn.textContent = "Leer menos";
-  } else {
-    toggleBtn.textContent = "Leer más";
+  if (sobreBtn && sobreExtra) {
+    // texto inicial según estado
+    sobreBtn.textContent = sobreExtra.classList.contains('expanded') ? 'Leer menos' : 'Leer más';
+
+    sobreBtn.addEventListener('click', () => {
+      sobreExtra.classList.toggle('expanded');
+      sobreBtn.textContent = sobreExtra.classList.contains('expanded') ? 'Leer menos' : 'Leer más';
+    });
   }
-});
 
-/* Animación de aparición al scroll */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-      observer.unobserve(entry.target);
-    }
+  /* ---------------------------
+     CARDS con Bootstrap collapse
+     solo reaccionamos a eventos de Bootstrap
+     --------------------------- */
+  document.querySelectorAll('.toggle-btn[data-bs-toggle="collapse"]').forEach(btn => {
+    const targetSelector = btn.getAttribute('data-bs-target') || btn.dataset.bsTarget;
+    if (!targetSelector) return;
+
+    const collapseEl = document.querySelector(targetSelector);
+    if (!collapseEl) return;
+
+    // estado inicial
+    btn.textContent = collapseEl.classList.contains('show') ? 'Leer menos' : 'Leer más';
+
+    collapseEl.addEventListener('shown.bs.collapse', () => {
+      document.querySelectorAll(`[data-bs-target="${targetSelector}"]`).forEach(b => {
+        b.textContent = 'Leer menos';
+        b.setAttribute('aria-expanded', 'true');
+      });
+    });
+
+    collapseEl.addEventListener('hidden.bs.collapse', () => {
+      document.querySelectorAll(`[data-bs-target="${targetSelector}"]`).forEach(b => {
+        b.textContent = 'Leer más';
+        b.setAttribute('aria-expanded', 'false');
+      });
+    });
   });
-});
 
-document.querySelectorAll("section:not(#banner) .fade-in").forEach(el => {
-  observer.observe(el);
-});
-
-/* Animación de aparición al cargar (solo banner) */
-window.addEventListener("load", () => {
-  document.querySelectorAll("#banner .fade-in").forEach(el => {
-    el.classList.add("show");
+  /* ---------------------------
+     Animación aparición al scroll
+     --------------------------- */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
   });
-});
 
-/* Carrusel Testimonios */
-const carouselItems = document.querySelectorAll('#testimonios .carousel-item');
-let maxHeight = 0;
+  document.querySelectorAll("section:not(#banner) .fade-in").forEach(el => {
+    observer.observe(el);
+  });
 
-carouselItems.forEach(item => {
-  const h = item.scrollHeight;
-  if (h > maxHeight) maxHeight = h;
-});
+  /* ---------------------------
+     Animación de aparición al cargar (solo banner)
+     --------------------------- */
+  window.addEventListener("load", () => {
+    document.querySelectorAll("#banner .fade-in").forEach(el => {
+      el.classList.add("show");
+    });
+  });
 
-carouselItems.forEach(item => {
-  item.style.height = maxHeight + 'px';
-});
+  /* ---------------------------
+     Carrusel Testimonios (igualar alturas)
+     --------------------------- */
+  const carouselItems = document.querySelectorAll('#testimonios .carousel-item');
+  let maxHeight = 0;
 
+  carouselItems.forEach(item => {
+    const h = item.scrollHeight;
+    if (h > maxHeight) maxHeight = h;
+  });
 
-/* Cards */
+  carouselItems.forEach(item => {
+    item.style.height = maxHeight + 'px';
+  });
 
-function setEqualHeight() {
+  /* ---------------------------
+     Cards (igualar alturas en #intro)
+     --------------------------- */
+  function setEqualHeight() {
     const cards = document.querySelectorAll('#intro .card, #intro .card2');
-    // Reset heights
+    // reset heights
     cards.forEach(c => c.style.height = 'auto');
 
     if (window.innerWidth > 768) {
-        let maxHeight = 0;
-        cards.forEach(c => {
-            if (c.offsetHeight > maxHeight) maxHeight = c.offsetHeight;
-        });
-        cards.forEach(c => c.style.height = maxHeight + 'px');
+      let maxH = 0;
+      cards.forEach(c => {
+        if (c.offsetHeight > maxH) maxH = c.offsetHeight;
+      });
+      cards.forEach(c => c.style.height = maxH + 'px');
     }
-}
+  }
 
-// Ejecutar al cargar y al cambiar tamaño de ventana
-window.addEventListener('load', setEqualHeight);
-window.addEventListener('resize', setEqualHeight);
+  window.addEventListener('load', setEqualHeight);
+  window.addEventListener('resize', setEqualHeight);
+
+});

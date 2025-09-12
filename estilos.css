@@ -129,8 +129,8 @@ header .links:hover {
 #banner::before {
     content: "";
     position: absolute;
-    inset: 0; /* shorthand para top, right, bottom, left: 0 */
-    background-color: rgba(198, 212, 180, 0.215); /* cambia el color y opacidad */
+    inset: 0;
+    background-color: rgba(198, 212, 180, 0.215);
 }
 
 #banner h2 {
@@ -262,6 +262,28 @@ header .links:hover {
 
 .btn-success:hover {
   background-color: var(--terciario);
+}
+
+/* DESPLEGABLES */
+
+.toggle-btn {
+  background-color: var(--verde);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: var(--secundario);
+  color: #fff;
+}
+
+.toggle-btn:focus {
+  background-color: var(--secundario);
+  color: #fff;
 }
 
 /* SOBRE MI */
