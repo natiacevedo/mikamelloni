@@ -106,3 +106,31 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', setEqualHeight);
 
 });
+
+/* ---------------------------
+   FORM CONFIRMACIÓN LOCAL
+   --------------------------- */
+const contactForm = document.querySelector('form[name="contact"]');
+const successMsg = document.getElementById('form-success');
+
+if (contactForm && successMsg) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      contactForm.reset();
+      successMsg.classList.remove('d-none');
+      successMsg.scrollIntoView({ behavior: "smooth" });
+    } catch (err) {
+      alert("Hubo un error al enviar el formulario. Por favor intentá de nuevo.");
+    }
+  });
+}

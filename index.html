@@ -246,7 +246,7 @@
             </div>
         </section>
 
-        <section class="container py-5">
+        <section class="container py-5" id="preguntas">
             <div class="row g-4">
                 <!-- Card 1 -->
                 <div class="col-md-6">
@@ -445,24 +445,35 @@
                 <p>¿Querés escribirme, hacerme una consulta, contratar un servicio?. Te respondo personalmente y con gusto.</p>
                 <p>También podés contactarme a través de <a href="https://wa.me/59895500511?text=Hola!%20Me%20contacto%20a%20través%20de%20la%20página%20web..." rel="noopener" target="_blank" class="text-decoration-none">WhatsApp.</a></p>
             </div>
-            <form name="contact" method="POST" class="w-100 ms-md-4" netlify>
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="w-100 ms-md-4">
+                <!-- Campo honeypot oculto (anti-spam) -->
+                <input type="hidden" name="form-name" value="contact">
+                <p class="d-none">
+                    <label>No completar: <input name="bot-field"></label>
+                </p>
+
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Nombre">
+                    <input type="text" class="form-control" name="name" placeholder="Nombre" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control" id="exampleFormControlInput2" name="email" placeholder="Correo electrónico">
+                    <input type="email" class="form-control" name="email" placeholder="Correo electrónico" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" id="exampleFormControlInput3" name="service" placeholder="Servicio en el que estás interesad@">
+                    <input type="text" class="form-control" name="service" placeholder="Servicio en el que estás interesad@">
                 </div>
                 <div class="mb-3">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3" placeholder="¡Contános más!"></textarea>
+                    <textarea class="form-control" name="message" rows="3" placeholder="¡Contános más!" required></textarea>
                 </div>
-        
+
                 <div class="text-end">
                     <button type="submit" class="btn text-decoration-none">Enviar</button>
                 </div>
             </form>
+
+            <!-- Mensaje de confirmación oculto -->
+            <div id="form-success" class="alert alert-success mt-3 d-none">
+                ¡Gracias por tu mensaje! Te respondo a la brevedad. 💌
+            </div>
         </section>
         
     </main>

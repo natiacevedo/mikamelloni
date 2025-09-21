@@ -286,6 +286,10 @@ header .links:hover {
   color: #fff;
 }
 
+#preguntas h5{
+  color: var(--anaranjado);
+}
+
 /* SOBRE MI */
 
 .sobremi{
