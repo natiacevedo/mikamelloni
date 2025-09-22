@@ -70,20 +70,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------------------------
-     Carrusel Testimonios (igualar alturas)
-     --------------------------- */
-  const carouselItems = document.querySelectorAll('#testimonios .carousel-item');
+  function ajustarAlturaCarousel() {
+  const items = document.querySelectorAll("#testimonios .carousel-item");
   let maxHeight = 0;
 
-  carouselItems.forEach(item => {
-    const h = item.scrollHeight;
+  items.forEach(item => {
+    // Guardamos estilos originales
+    const originalDisplay = item.style.display;
+    const originalVisibility = item.style.visibility;
+
+    // Hacer visible temporalmente para medir
+    item.style.display = 'block';
+    item.style.visibility = 'hidden';
+    item.style.height = 'auto'; // reset altura
+
+    const h = item.offsetHeight;
     if (h > maxHeight) maxHeight = h;
+
+    // Restaurar estilos
+    item.style.display = originalDisplay;
+    item.style.visibility = originalVisibility;
   });
 
-  carouselItems.forEach(item => {
-    item.style.height = maxHeight + 'px';
-  });
+  // Aplicar altura máxima solo si es desktop
+  if (window.innerWidth > 768) {
+    items.forEach(item => {
+      item.style.height = maxHeight + 'px';
+    });
+  } else {
+    // En móvil: altura automática
+    items.forEach(item => {
+      item.style.height = 'auto';
+    });
+  }
+}
+
+window.addEventListener('load', ajustarAlturaCarousel);
+window.addEventListener('resize', ajustarAlturaCarousel);
+
 
   /* ---------------------------
      Cards (igualar alturas en #intro)

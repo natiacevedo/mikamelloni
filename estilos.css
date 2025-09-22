@@ -353,7 +353,7 @@ header .links:hover {
 
 #testimonios {
   background-color: var(--secundario);
-  height: auto;
+  height: 70vh;
   display: flex;
   align-items: center;
 }
@@ -363,6 +363,10 @@ header .links:hover {
   font-family: "Brittany";
 }
 
+#testimonios p, #testimonios h5 {
+  font-size: smaller;
+}
+
 #testimonios .carousel-indicators [data-bs-target] {
   background-color: black;
 }
@@ -370,12 +374,6 @@ header .links:hover {
 #testimonios .carousel-control-prev-icon,
 #testimonios .carousel-control-next-icon {
   filter: invert(1);
-}
-
-@media (max-width: 768px) {
-  #testimonios {
-  padding: 30px 0;
-}
 }
 
 #dejar-testimonio{
@@ -389,6 +387,19 @@ header .links:hover {
 
 #dejar-testimonio a:hover{
   color: var(--terciario);
+}
+
+
+@media (max-width: 768px) {
+  #testimonios .carousel-item {
+    height: auto;
+  }
+
+  #testimonios .carousel-item .d-flex {
+    height: auto;
+    flex-direction: column;
+    padding: 20px;
+  }
 }
 
 /* CONTACTO */
