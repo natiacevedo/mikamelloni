@@ -391,8 +391,9 @@ header .links:hover {
 
 
 @media (max-width: 768px) {
-  #testimonios .carousel-item {
-    height: auto;
+
+    #testimonios .carousel-item {
+    height: auto !important;
   }
 
   #testimonios .carousel-item .d-flex {
@@ -400,6 +401,10 @@ header .links:hover {
     flex-direction: column;
     padding: 20px;
   }
+}
+
+#testimonios .carousel-item {
+  transition: all 0.3s ease-in-out;
 }
 
 /* CONTACTO */

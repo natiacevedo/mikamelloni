@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const sobreExtra = document.getElementById('extra-text');
 
   if (sobreBtn && sobreExtra) {
-    // texto inicial según estado
     sobreBtn.textContent = sobreExtra.classList.contains('expanded') ? 'Leer menos' : 'Leer más';
 
     sobreBtn.addEventListener('click', () => {
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------------------------
      CARDS con Bootstrap collapse
-     solo reaccionamos a eventos de Bootstrap
      --------------------------- */
   document.querySelectorAll('.toggle-btn[data-bs-toggle="collapse"]').forEach(btn => {
     const targetSelector = btn.getAttribute('data-bs-target') || btn.dataset.bsTarget;
@@ -27,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const collapseEl = document.querySelector(targetSelector);
     if (!collapseEl) return;
 
-    // estado inicial
     btn.textContent = collapseEl.classList.contains('show') ? 'Leer menos' : 'Leer más';
 
     collapseEl.addEventListener('shown.bs.collapse', () => {
@@ -70,51 +67,47 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  function ajustarAlturaCarousel() {
-  const items = document.querySelectorAll("#testimonios .carousel-item");
-  let maxHeight = 0;
+  /* ---------------------------
+   CAROUSEL TESTIMONIOS
+   --------------------------- */
+const carouselInner = document.querySelector('#testimonios .carousel-inner');
+const carouselItems = document.querySelectorAll('#testimonios .carousel-item');
 
-  items.forEach(item => {
-    // Guardamos estilos originales
-    const originalDisplay = item.style.display;
-    const originalVisibility = item.style.visibility;
+function ajustarAlturaCarousel() {
+  if (!carouselInner) return;
 
-    // Hacer visible temporalmente para medir
-    item.style.display = 'block';
-    item.style.visibility = 'hidden';
-    item.style.height = 'auto'; // reset altura
-
-    const h = item.offsetHeight;
-    if (h > maxHeight) maxHeight = h;
-
-    // Restaurar estilos
-    item.style.display = originalDisplay;
-    item.style.visibility = originalVisibility;
-  });
-
-  // Aplicar altura máxima solo si es desktop
   if (window.innerWidth > 768) {
-    items.forEach(item => {
-      item.style.height = maxHeight + 'px';
+    // Esperar al próximo frame para asegurarnos de que la clase .active ya se aplicó
+    requestAnimationFrame(() => {
+      const activeItem = document.querySelector('#testimonios .carousel-item.active');
+      if (activeItem) {
+        const height = activeItem.offsetHeight;
+        carouselInner.style.transition = 'height 0.3s ease';
+        carouselInner.style.height = height + 'px';
+      }
     });
   } else {
-    // En móvil: altura automática
-    items.forEach(item => {
-      item.style.height = 'auto';
-    });
+    carouselInner.style.height = 'auto';
   }
 }
 
+// Llamar al cargar la página
 window.addEventListener('load', ajustarAlturaCarousel);
-window.addEventListener('resize', ajustarAlturaCarousel);
 
+// Llamar al cambiar slide
+const carousel = document.querySelector('#testimonios');
+if (carousel) {
+  carousel.addEventListener('slid.bs.carousel', ajustarAlturaCarousel);
+}
+
+// Llamar al redimensionar ventana
+window.addEventListener('resize', ajustarAlturaCarousel);
 
   /* ---------------------------
      Cards (igualar alturas en #intro)
      --------------------------- */
   function setEqualHeight() {
     const cards = document.querySelectorAll('#intro .card, #intro .card2');
-    // reset heights
     cards.forEach(c => c.style.height = 'auto');
 
     if (window.innerWidth > 768) {
